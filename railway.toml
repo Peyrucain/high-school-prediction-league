@@ -1,0 +1,8 @@
+[build]
+builder = "NIXPACKS"
+buildCommand = "npm install && npm run build"
+
+[deploy]
+startCommand = "NODE_ENV=production npx tsx server/index.ts"
+healthcheckPath = "/api/weeks"
+restartPolicyType = "ON_FAILURE"
