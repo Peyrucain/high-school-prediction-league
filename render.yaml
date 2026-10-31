@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: high-school-prediction-league
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: NODE_ENV=production npx tsx server/index.ts
+    healthCheckPath: /api/weeks
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+    disk:
+      name: league-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
